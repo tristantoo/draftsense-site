@@ -1,4 +1,4 @@
-/* DraftSense site - native CSS, no build step (GitHub Pages target).
+/* Scrypick site - native CSS, no build step (GitHub Pages target).
    Design read: trust-first product + compliance landing for Riot API reviewers
    and League players. Dark theme locked. ONE accent (teal). Restrained motion.
    Shape scale: buttons = pill, panels = 14px, badges = 6px (documented + held).
@@ -92,6 +92,13 @@ section .intro { color: var(--text-2); margin: 10px 0 26px; max-width: 60ch; }
 .does li span { color: var(--text-2); font-size: 14.5px; }
 @media (max-width: 820px) { .does { grid-template-columns: 1fr; gap: 24px; } }
 
+/* how-we-measure: full-width principle list (same rhythm as .does) */
+.principles { list-style: none; padding: 0; margin: 0; }
+.principles li { padding: 14px 0; border-top: 1px solid var(--border); }
+.principles li:first-child { border-top: none; }
+.principles li b { display: block; margin-bottom: 3px; }
+.principles li span { color: var(--text-2); font-size: 14.5px; }
+
 /* how-it-works: numbered steps */
 ol.steps { counter-reset: s; list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
 ol.steps li { counter-increment: s; position: relative; padding: 16px 16px 16px 56px; background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--r-panel); }
@@ -157,3 +164,54 @@ footer.site .wrap { display: flex; flex-wrap: wrap; gap: 22px; justify-content: 
   }
   @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 }
+
+/* ---- blog: index + posts (reuses vars, sits on .doc rhythm) ---- */
+.blog-head { padding: 48px 0 6px; }
+.blog-head .eyebrow { margin-bottom: 12px; }
+.blog-head h1 { font-size: clamp(28px, 4.4vw, 40px); }
+.blog-head p.sub { color: var(--text-2); font-size: 17px; margin: 14px 0 0; max-width: 60ch; }
+
+.postlist { list-style: none; padding: 0; margin: 0; }
+.postlist li { border-top: 1px solid var(--border); }
+.postlist li:first-child { border-top: none; }
+.postlist a.post-card { display: block; padding: 22px 0; color: var(--text); }
+.postlist a.post-card:hover { text-decoration: none; }
+.postlist a.post-card:hover h3 { color: var(--accent); }
+.postlist .kicker { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); }
+.postlist h3 { font-size: 20px; margin: 6px 0 6px; letter-spacing: -0.01em; }
+.postlist p { color: var(--text-2); font-size: 14.5px; margin: 0; max-width: 68ch; }
+
+/* article body */
+.post { padding: 8px 0 56px; }
+.post .updated { color: var(--dim); font-size: 13px; margin: 8px 0 26px; }
+.post > .lede { font-size: 18px; color: var(--text); margin: 0 0 22px; max-width: 64ch; }
+.post h2 { font-size: 22px; margin: 34px 0 8px; }
+.post h3 { font-size: 16px; margin: 24px 0 6px; color: var(--text); }
+.post p { color: var(--text-2); max-width: 68ch; margin: 12px 0; }
+.post ul { color: var(--text-2); max-width: 68ch; padding-left: 20px; }
+.post li { margin: 6px 0; }
+.post a.back { font-size: 14px; display: inline-block; margin-top: 8px; }
+.callout { background: var(--bg-2); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--r-badge); padding: 14px 16px; margin: 20px 0; }
+.callout p { margin: 0; color: var(--text-2); font-size: 14.5px; }
+
+/* data table (tabular, reuses table.api tone) */
+.tbl-wrap { overflow-x: auto; margin: 16px 0 6px; }
+table.data { width: 100%; border-collapse: collapse; font-size: 14.5px; min-width: 460px; }
+table.data caption { text-align: left; color: var(--dim); font-size: 12.5px; padding: 0 0 8px; }
+table.data th, table.data td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--border); }
+table.data thead th { color: var(--dim); font-weight: 600; font-size: 12px; letter-spacing: 0.02em; text-transform: uppercase; }
+table.data td.pair { font-weight: 600; white-space: nowrap; }
+table.data td.num { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+table.data td.pos { color: var(--good); }
+table.data td.neg { color: var(--bad); }
+table.data td.dim { color: var(--dim); text-align: right; font-variant-numeric: tabular-nums; }
+.tbl-note { color: var(--dim); font-size: 12.5px; margin: 6px 0 0; }
+
+/* homepage tools/writing teaser */
+.tools { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.tools .tool { background: var(--panel); border: 1px solid var(--border); border-radius: var(--r-panel); padding: 20px; display: block; color: var(--text); }
+.tools .tool:hover { text-decoration: none; border-color: var(--accent); }
+.tools .tool .kicker { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.tools .tool h3 { font-size: 17px; margin: 8px 0 6px; }
+.tools .tool p { margin: 0; color: var(--text-2); font-size: 14px; }
+@media (max-width: 640px) { .tools { grid-template-columns: 1fr; } }

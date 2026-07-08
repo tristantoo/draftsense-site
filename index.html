@@ -3,19 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DraftSense - win-probability companion for League of Legends champ select</title>
-<meta name="description" content="DraftSense shows the calibrated win chance of every candidate pick during champ select, personalized to the lobby's ranks and your champion mastery. Read-only, advisory, Riot ToS-safe.">
+<title>Scrypick - win-probability companion for League of Legends champ select</title>
+<meta name="description" content="Scrypick shows the calibrated win chance of every candidate pick during champ select, personalized to the lobby's ranks and your champion mastery. Read-only, advisory, Riot ToS-safe.">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header class="nav">
   <div class="wrap">
-    <div class="brand">Draft<b>Sense</b></div>
+    <div class="brand">Scry<b>pick</b></div>
     <nav class="nav-links">
       <a href="#how">How it works</a>
+      <a href="scout.html">Champion Scout</a>
+      <a href="blog/index.html">Blog</a>
       <a href="#api">Riot API use</a>
-      <a href="#responsible">Responsible use</a>
       <a href="privacy.html">Privacy</a>
     </nav>
   </div>
@@ -27,7 +28,7 @@
       <div>
         <span class="eyebrow">Champ-select companion for League of Legends</span>
         <h1>Pick to your strengths, not a tier list.</h1>
-        <p class="sub">DraftSense ranks every option for your role by matchup, team fit, and your champion mastery, refreshed each patch.</p>
+        <p class="sub">Scrypick ranks every option for your role by matchup, team fit, and your champion mastery, refreshed each patch.</p>
         <div class="cta">
           <a class="btn primary" href="#how">How it works</a>
           <a class="btn ghost" href="privacy.html">Privacy policy</a>
@@ -40,7 +41,7 @@
           <div class="row"><div class="pick"><div class="name">Kalista</div><div class="why">strong into the enemy bot lane</div></div><div class="pick wp">51.9%</div></div>
           <div class="row"><div class="pick"><div class="name">Xayah</div><div class="why">safe blind, your 240k mastery</div></div><div class="pick wp">51.1%</div></div>
         </div>
-        <div class="note">Several top picks are often statistical ties. DraftSense says so instead of faking a ranking.</div>
+        <div class="note">Several top picks are often statistical ties. Scrypick says so instead of faking a ranking.</div>
       </div>
     </div>
   </section>
@@ -48,7 +49,7 @@
   <section id="what">
     <div class="wrap">
       <h2>What it does</h2>
-      <p class="intro">During champ select, DraftSense ranks the candidates for your role by how well they fit this specific draft and how well you play them.</p>
+      <p class="intro">During champ select, Scrypick ranks the candidates for your role by how well they fit this specific draft and how well you play them.</p>
       <div class="does">
         <ul>
           <li><b>Plays to your mastery</b><span>Ranks champions you actually perform on, from each player's champion-mastery totals, not just global averages.</span></li>
@@ -59,7 +60,7 @@
         <figure class="example" style="margin:0">
           <div class="cap">Overlay in champ select</div>
           <img src="overlay.png" width="488" height="880"
-               alt="DraftSense overlay during champ select: ally and enemy rows with champion portraits, a damage-profile comparison, a counterpick note, the recommended pick Kai'Sa with its calibrated win chance and a matchup, synergy, base, and comp-fit value breakdown, plus ranked alternates."
+               alt="Scrypick overlay during champ select: ally and enemy rows with champion portraits, a damage-profile comparison, a counterpick note, the recommended pick Kai'Sa with its calibrated win chance and a matchup, synergy, base, and comp-fit value breakdown, plus ranked alternates."
                style="display:block; width:100%; height:auto; border-radius:8px; margin-top:4px" />
         </figure>
       </div>
@@ -82,7 +83,7 @@
   <section id="different">
     <div class="wrap">
       <h2>How it is different</h2>
-      <p class="intro">Most tools show population averages. DraftSense reads your specific draft and lobby.</p>
+      <p class="intro">Most tools show population averages. Scrypick reads your specific draft and lobby.</p>
       <div class="versus">
         <div class="col them">
           <h3>Typical stats sites</h3>
@@ -94,7 +95,7 @@
           </ul>
         </div>
         <div class="col us">
-          <h3>DraftSense</h3>
+          <h3>Scrypick</h3>
           <ul>
             <li>P(win) for this partial draft, from a sequence model</li>
             <li>Personalized to your mastery and the lobby's ranks</li>
@@ -106,9 +107,22 @@
     </div>
   </section>
 
+  <section id="measure">
+    <div class="wrap">
+      <h2>How we measure</h2>
+      <p class="intro">Draft-prediction numbers are easy to inflate. Here is how we read ours, and why it looks lower on purpose.</p>
+      <ul class="principles">
+        <li><b>Tested forward, not in-sample</b><span>We train on past patches and score the next one. Our honest forward ROC is about 0.54; the same model reads higher on a random split that lets it peek at the live meta. We report the forward number.</span></li>
+        <li><b>No champion win-rate features</b><span>Feeding a model recent champion win rates flatters the score but mostly re-reads the meta, and leaks when the window overlaps the test games. We tested it: it leaks or adds nothing. We use champion identity, your mastery, and the lobby's ranks instead.</span></li>
+        <li><b>Draft win % is low-resolution</b><span>A ten-champion draft does not decide a thirty-minute game, so forward win probability is near-coinflip for everyone. We say so, flag statistical ties, and lead with the sharper signals: matchup, synergy, and your mastery.</span></li>
+        <li><b>Calibrated, not flattering</b><span>When we show a win chance it is calibrated: 55% means about 55%. A bigger advertised number usually comes from an easier target, a looser test, or win-rate features, not better advice.</span></li>
+      </ul>
+    </div>
+  </section>
+
   <section id="api">
     <div class="wrap">
-      <h2>How DraftSense uses the Riot API</h2>
+      <h2>How Scrypick uses the Riot API</h2>
       <p class="intro">Transparent by design. Official Web APIs only, rate-limited, no scraping, no write endpoints.</p>
       <table class="api">
         <thead><tr><th>API</th><th>Why</th><th>When</th></tr></thead>
@@ -137,10 +151,29 @@
     </div>
   </section>
 
+  <section id="tools">
+    <div class="wrap">
+      <h2>Free tools &amp; writing</h2>
+      <p class="intro">No install, no account. Two ways to see the model's read before you ever download the overlay.</p>
+      <div class="tools">
+        <a class="tool" href="scout.html">
+          <span class="kicker">Interactive</span>
+          <h3>Champion Scout →</h3>
+          <p>Pick-priority, measured traits, and matchups by role from recent pro games. Search any champion and see who they answer into.</p>
+        </a>
+        <a class="tool" href="blog/index.html">
+          <span class="kicker">Data blog</span>
+          <h3>Notes from the draft data →</h3>
+          <p>Honest reads on synergy and matchup edges from a large ranked corpus — starting with the strongest and most over-rated champion pairings this meta.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <section id="contact" class="contact">
     <div class="wrap">
       <h2>Contact</h2>
-      <p>Questions, data requests, or Riot review: <a href="mailto:contact@draftsense.app">contact@draftsense.app</a></p>
+      <p>Questions, data requests, or Riot review: <a href="mailto:contact@scrypick.com">contact@scrypick.com</a></p>
     </div>
   </section>
 </main>
@@ -148,13 +181,13 @@
 <footer class="site">
   <div class="wrap">
     <p class="legal">
-      DraftSense isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games
+      Scrypick isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games
       or anyone officially involved in producing or managing Riot Games properties. Riot Games and all
       associated properties are trademarks or registered trademarks of Riot Games, Inc.
     </p>
     <div class="footlinks">
       <a href="privacy.html">Privacy policy</a>
-      <a href="mailto:contact@draftsense.app">Contact</a>
+      <a href="mailto:contact@scrypick.com">Contact</a>
     </div>
   </div>
 </footer>

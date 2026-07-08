@@ -1,6 +1,6 @@
-# DraftSense — landing page
+# Scrypick — landing page
 
-Public static site for [DraftSense](https://github.com/tristantoo/draftsense), a
+Public static site for [Scrypick](https://github.com/tristantoo/scrypick), a
 champ-select win-probability companion for League of Legends. Served via GitHub
 Pages; this is the product URL + privacy policy for the Riot API application.
 
