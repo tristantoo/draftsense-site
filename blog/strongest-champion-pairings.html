@@ -28,12 +28,12 @@
     <div class="wrap">
       <span class="eyebrow">Data: synergy &amp; matchups</span>
       <h1>The strongest champion pairings in the current meta</h1>
-      <p class="updated">Updated 8 July 2026. Corpus: 9,968 ranked games, 173 champions, verified clean.</p>
+      <p class="updated">Updated 11 July 2026. Corpus: 113,210 ranked games, 173 champions, verified clean.</p>
 
       <p class="lede">Tier lists rank champions alone. Drafts are about pairs: the duo that snowballs together, the lane that loses before minute three. Here are the pairings our estimator rates highest and lowest right now, and, just as important, how to read the numbers without fooling yourself.</p>
 
       <div class="callout">
-        <p><strong>Why the corpus is smaller than you'd expect.</strong> While preparing this post we found an ID-encoding bug in our larger table: two champion ID schemes had been mixed, which split some champions' games across two keys and even merged two different champions into one. We rebuilt every number below from raw match data in a single verified ID space, and added an automated check so the bug cannot recur. A smaller corpus we can vouch for beats a bigger one we can't. These tables re-run as the clean corpus grows.</p>
+        <p><strong>This post kept its promise.</strong> The launch version (8 July) shipped on a deliberately small corpus: we had found an ID-encoding bug that mixed two champion ID schemes, so we rebuilt from raw match data in a single verified ID space, published only the 9,968 games that survived, and added an automated guard so the bug cannot recur. We said the tables would re-run as the clean corpus grew. They have: the full corpus is now re-merged through that same guarded pipeline, <strong>113,210 verified-clean ranked games</strong>, and every table below re-ran with the sample floor raised from 25 to <strong>120 effective games</strong>. Same estimator, same honesty, much harder numbers.</p>
       </div>
 
       <h2>How to read these tables</h2>
@@ -46,7 +46,7 @@
         <li><strong>Lane-restricted counters.</strong> A "counter" here is the <em>same-role</em> matchup, champion versus their lane opponent, not noise from four unrelated enemies.</li>
       </ul>
       <div class="callout">
-        <p>The <strong>&asymp; win-swing</strong> column translates the log-odds interaction into an approximate win-percentage change, for intuition only. Every row shown clears an effective sample of at least 25 recency-weighted games. That floor is lower than we want it to be on a young corpus, which is exactly why the sample size is printed next to every number: read a 25-game edge as a lead worth checking, not a law.</p>
+        <p>The <strong>&asymp; win-swing</strong> column translates the log-odds interaction into an approximate win-percentage change, for intuition only. Every row shown clears an effective sample of at least <strong>120 recency-weighted games</strong>, nearly five times the floor this post launched with. The sample size is still printed next to every number: it is how you tell a hardened edge from a fresh one.</p>
       </div>
 
       <h2>Duos that lift each other</h2>
@@ -56,22 +56,22 @@
           <caption>Top same-team synergy interactions, verified-clean corpus</caption>
           <thead><tr><th>Pairing</th><th class="num">Interaction (log-odds)</th><th class="num">&asymp; win-swing</th><th class="num">Eff. games</th></tr></thead>
           <tbody>
-            <tr><td class="pair">Ezreal + Jayce</td><td class="num pos">+0.247</td><td class="num pos">&asymp; +6.2%</td><td class="dim">41</td></tr>
-            <tr><td class="pair">Sona + Sylas</td><td class="num pos">+0.224</td><td class="num pos">&asymp; +5.6%</td><td class="dim">26</td></tr>
-            <tr><td class="pair">Nautilus + Viktor</td><td class="num pos">+0.206</td><td class="num pos">&asymp; +5.1%</td><td class="dim">25</td></tr>
-            <tr><td class="pair">Sylas + Yone</td><td class="num pos">+0.195</td><td class="num pos">&asymp; +4.9%</td><td class="dim">28</td></tr>
-            <tr><td class="pair">Bel'Veth + Senna</td><td class="num pos">+0.172</td><td class="num pos">&asymp; +4.3%</td><td class="dim">29</td></tr>
-            <tr><td class="pair">Kayn + Senna</td><td class="num pos">+0.167</td><td class="num pos">&asymp; +4.2%</td><td class="dim">25</td></tr>
-            <tr><td class="pair">Master Yi + Senna</td><td class="num pos">+0.162</td><td class="num pos">&asymp; +4.0%</td><td class="dim">26</td></tr>
-            <tr><td class="pair">Anivia + Ezreal</td><td class="num pos">+0.149</td><td class="num pos">&asymp; +3.7%</td><td class="dim">30</td></tr>
-            <tr><td class="pair">Graves + Nautilus</td><td class="num pos">+0.145</td><td class="num pos">&asymp; +3.6%</td><td class="dim">26</td></tr>
-            <tr><td class="pair">Seraphine + Aatrox</td><td class="num pos">+0.142</td><td class="num pos">&asymp; +3.5%</td><td class="dim">25</td></tr>
-            <tr><td class="pair">Graves + Senna</td><td class="num pos">+0.139</td><td class="num pos">&asymp; +3.5%</td><td class="dim">40</td></tr>
-            <tr><td class="pair">Jayce + Seraphine</td><td class="num pos">+0.123</td><td class="num pos">&asymp; +3.1%</td><td class="dim">28</td></tr>
+            <tr><td class="pair">Bard + Sylas</td><td class="num pos">+0.200</td><td class="num pos">&asymp; +5.0%</td><td class="dim">125</td></tr>
+            <tr><td class="pair">Alistar + Yasuo</td><td class="num pos">+0.179</td><td class="num pos">&asymp; +4.5%</td><td class="dim">126</td></tr>
+            <tr><td class="pair">Sona + Sylas</td><td class="num pos">+0.164</td><td class="num pos">&asymp; +4.1%</td><td class="dim">127</td></tr>
+            <tr><td class="pair">Nautilus + Viktor</td><td class="num pos">+0.163</td><td class="num pos">&asymp; +4.1%</td><td class="dim">126</td></tr>
+            <tr><td class="pair">Seraphine + Naafiri</td><td class="num pos">+0.156</td><td class="num pos">&asymp; +3.9%</td><td class="dim">149</td></tr>
+            <tr><td class="pair">Sylas + Yone</td><td class="num pos">+0.154</td><td class="num pos">&asymp; +3.9%</td><td class="dim">169</td></tr>
+            <tr><td class="pair">Yasuo + Sylas</td><td class="num pos">+0.138</td><td class="num pos">&asymp; +3.5%</td><td class="dim">166</td></tr>
+            <tr><td class="pair">Nami + Sylas</td><td class="num pos">+0.130</td><td class="num pos">&asymp; +3.3%</td><td class="dim">159</td></tr>
+            <tr><td class="pair">Akali + Jhin</td><td class="num pos">+0.129</td><td class="num pos">&asymp; +3.2%</td><td class="dim">131</td></tr>
+            <tr><td class="pair">Viego + Smolder</td><td class="num pos">+0.127</td><td class="num pos">&asymp; +3.2%</td><td class="dim">122</td></tr>
+            <tr><td class="pair">Caitlyn + Lux</td><td class="num pos">+0.119</td><td class="num pos">&asymp; +3.0%</td><td class="dim">208</td></tr>
+            <tr><td class="pair">Ahri + Senna</td><td class="num pos">+0.113</td><td class="num pos">&asymp; +2.8%</td><td class="dim">188</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="tbl-note">Ezreal + Jayce tops the table: a double-poke pairing where both spike on the same items and neither needs the other to tank. And notice how often Senna appears. She plays two roles and farms souls off a partner's presence, so her result depends on who that partner is more than most champions'. That partner-dependence is exactly the effect this table measures.</p>
+      <p class="tbl-note">The full-corpus story is Sylas: he sits in five of the twelve rows, each time next to a support or a wind brother. We report the pattern rather than sell you a mechanism, but the shape of it, one flexible mid who scales with what his team gives him, is exactly the kind of partner-dependence this table exists to measure. Alistar + Yasuo is the cleanest mechanical read in the list: a support whose whole kit is knockups next to the champion whose ultimate needs one.</p>
 
       <h2>Duos the meta over-rates</h2>
       <p>The other end: pairs that measurably <em>underperform</em> together, usually because they want the same thing and neither provides what the other lacks.</p>
@@ -80,16 +80,16 @@
           <caption>Largest negative synergy interactions</caption>
           <thead><tr><th>Pairing</th><th class="num">Interaction (log-odds)</th><th class="num">&asymp; win-swing</th><th class="num">Eff. games</th></tr></thead>
           <tbody>
-            <tr><td class="pair">Draven + Sylas</td><td class="num neg">&minus;0.266</td><td class="num neg">&asymp; &minus;6.6%</td><td class="dim">25</td></tr>
-            <tr><td class="pair">Ezreal + Senna</td><td class="num neg">&minus;0.229</td><td class="num neg">&asymp; &minus;5.7%</td><td class="dim">33</td></tr>
-            <tr><td class="pair">Vladimir + Senna</td><td class="num neg">&minus;0.184</td><td class="num neg">&asymp; &minus;4.6%</td><td class="dim">34</td></tr>
-            <tr><td class="pair">Jayce + Sylas</td><td class="num neg">&minus;0.181</td><td class="num neg">&asymp; &minus;4.5%</td><td class="dim">29</td></tr>
-            <tr><td class="pair">Senna + Aatrox</td><td class="num neg">&minus;0.179</td><td class="num neg">&asymp; &minus;4.5%</td><td class="dim">32</td></tr>
-            <tr><td class="pair">Shen + Senna</td><td class="num neg">&minus;0.168</td><td class="num neg">&asymp; &minus;4.2%</td><td class="dim">26</td></tr>
+            <tr><td class="pair">Ezreal + Yasuo</td><td class="num neg">&minus;0.213</td><td class="num neg">&asymp; &minus;5.3%</td><td class="dim">127</td></tr>
+            <tr><td class="pair">Anivia + Senna</td><td class="num neg">&minus;0.202</td><td class="num neg">&asymp; &minus;5.1%</td><td class="dim">142</td></tr>
+            <tr><td class="pair">Graves + Yone</td><td class="num neg">&minus;0.184</td><td class="num neg">&asymp; &minus;4.6%</td><td class="dim">120</td></tr>
+            <tr><td class="pair">Graves + Smolder</td><td class="num neg">&minus;0.181</td><td class="num neg">&asymp; &minus;4.5%</td><td class="dim">168</td></tr>
+            <tr><td class="pair">Lee Sin + Sylas</td><td class="num neg">&minus;0.178</td><td class="num neg">&asymp; &minus;4.5%</td><td class="dim">129</td></tr>
+            <tr><td class="pair">Akali + Nami</td><td class="num neg">&minus;0.175</td><td class="num neg">&asymp; &minus;4.4%</td><td class="dim">122</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="tbl-note">Senna shows up here too, with different partners. The same champion sitting in both the best and worst tables is the cleanest argument against per-champion tier lists we know: her value is not a number, it is a function of who she is paired with. Ezreal + Senna is the classic trap, two scaling gold-hungry carries in one lane with no one to make space early.</p>
+      <p class="tbl-note">Look at who repeats across the two tables. Sylas is in five of the best rows and one of the worst; Senna lifts with Ahri and sinks with Anivia; Yasuo thrives next to Alistar's knockups and drowns next to Ezreal, who has none to give. The same champion sitting in both the best and worst tables is the cleanest argument against per-champion tier lists we know: their value is not a number, it is a function of who they are drafted with. Graves appearing twice with scaling carries is the other classic trap, two farm-hungry damage threats and nobody to make space for either.</p>
 
       <h2>The hardest lane counters</h2>
       <p>Same idea, applied to the direct lane matchup: how much a champion beats the specific opponent standing across from them, with each champion's own strength removed. Read it as "prioritize or dodge this lane," not "this champion is better."</p>
@@ -98,27 +98,27 @@
           <caption>Strongest same-role lane matchups (A beats B)</caption>
           <thead><tr><th>Matchup</th><th class="num">Interaction (log-odds)</th><th class="num">&asymp; win-swing</th><th class="num">Eff. games</th></tr></thead>
           <tbody>
-            <tr><td class="pair">Sona &rarr; Senna</td><td class="num pos">+0.214</td><td class="num pos">&asymp; +5.4%</td><td class="dim">26</td></tr>
-            <tr><td class="pair">Braum &rarr; Nautilus</td><td class="num pos">+0.194</td><td class="num pos">&asymp; +4.9%</td><td class="dim">25</td></tr>
-            <tr><td class="pair">Lee Sin &rarr; Graves</td><td class="num pos">+0.188</td><td class="num pos">&asymp; +4.7%</td><td class="dim">25</td></tr>
-            <tr><td class="pair">Smolder &rarr; Jhin</td><td class="num pos">+0.141</td><td class="num pos">&asymp; +3.5%</td><td class="dim">27</td></tr>
-            <tr><td class="pair">Ezreal &rarr; Senna</td><td class="num pos">+0.118</td><td class="num pos">&asymp; +2.9%</td><td class="dim">33</td></tr>
-            <tr><td class="pair">Senna &rarr; Smolder</td><td class="num pos">+0.103</td><td class="num pos">&asymp; +2.6%</td><td class="dim">30</td></tr>
-            <tr><td class="pair">Bard &rarr; Senna</td><td class="num pos">+0.100</td><td class="num pos">&asymp; +2.5%</td><td class="dim">25</td></tr>
-            <tr><td class="pair">Nautilus &rarr; Nami</td><td class="num pos">+0.092</td><td class="num pos">&asymp; +2.3%</td><td class="dim">25</td></tr>
-            <tr><td class="pair">Jhin &rarr; Ashe</td><td class="num pos">+0.076</td><td class="num pos">&asymp; +1.9%</td><td class="dim">29</td></tr>
-            <tr><td class="pair">Jhin &rarr; Caitlyn</td><td class="num pos">+0.071</td><td class="num pos">&asymp; +1.8%</td><td class="dim">33</td></tr>
-            <tr><td class="pair">Kai'Sa &rarr; Ezreal</td><td class="num pos">+0.068</td><td class="num pos">&asymp; +1.7%</td><td class="dim">29</td></tr>
-            <tr><td class="pair">Smolder &rarr; Ezreal</td><td class="num pos">+0.050</td><td class="num pos">&asymp; +1.2%</td><td class="dim">40</td></tr>
+            <tr><td class="pair">Lucian &rarr; Smolder</td><td class="num pos">+0.177</td><td class="num pos">&asymp; +4.4%</td><td class="dim">124</td></tr>
+            <tr><td class="pair">Ezreal &rarr; Senna</td><td class="num pos">+0.168</td><td class="num pos">&asymp; +4.2%</td><td class="dim">126</td></tr>
+            <tr><td class="pair">Jhin &rarr; Caitlyn</td><td class="num pos">+0.155</td><td class="num pos">&asymp; +3.9%</td><td class="dim">232</td></tr>
+            <tr><td class="pair">Braum &rarr; Nautilus</td><td class="num pos">+0.142</td><td class="num pos">&asymp; +3.5%</td><td class="dim">138</td></tr>
+            <tr><td class="pair">Smolder &rarr; Ezreal</td><td class="num pos">+0.132</td><td class="num pos">&asymp; +3.3%</td><td class="dim">217</td></tr>
+            <tr><td class="pair">Nautilus &rarr; Karma</td><td class="num pos">+0.125</td><td class="num pos">&asymp; +3.1%</td><td class="dim">122</td></tr>
+            <tr><td class="pair">Sona &rarr; Nami</td><td class="num pos">+0.122</td><td class="num pos">&asymp; +3.0%</td><td class="dim">168</td></tr>
+            <tr><td class="pair">Ashe &rarr; Jinx</td><td class="num pos">+0.115</td><td class="num pos">&asymp; +2.9%</td><td class="dim">127</td></tr>
+            <tr><td class="pair">Senna &rarr; Sona</td><td class="num pos">+0.110</td><td class="num pos">&asymp; +2.7%</td><td class="dim">135</td></tr>
+            <tr><td class="pair">Lee Sin &rarr; Graves</td><td class="num pos">+0.110</td><td class="num pos">&asymp; +2.7%</td><td class="dim">154</td></tr>
+            <tr><td class="pair">Lucian &rarr; Ezreal</td><td class="num pos">+0.107</td><td class="num pos">&asymp; +2.7%</td><td class="dim">134</td></tr>
+            <tr><td class="pair">Ezreal &rarr; Jhin</td><td class="num pos">+0.091</td><td class="num pos">&asymp; +2.3%</td><td class="dim">232</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="tbl-note">Braum punishing Nautilus is the pattern to internalize: a shield that eats the hook removes the engage champion's whole plan. The matchup is antisymmetric. If A beats B by this much, B loses to A by the same amount, so every row here is also a lane to avoid from the other side.</p>
+      <p class="tbl-note">Braum punishing Nautilus is the pattern to internalize: a shield that eats the hook removes the engage champion's whole plan. It is also the post's best receipt: that row was in the launch table at 25 effective games, and it survived the corpus growing five-fold, now at 138. Ezreal beating Senna hardened the same way. Lucian topping the list against Smolder is the oldest story in bot lane, a laning bully against a champion who is only allowed to scale if you let him. And the matchup is antisymmetric: if A beats B by this much, B loses to A by the same amount, so every row here is also a lane to avoid from the other side.</p>
 
       <h2>The honest caveats</h2>
       <ul>
         <li><strong>Descriptive, not causal.</strong> These are what happened across the sample, not a promise. A pairing that fits the current meta can flip when a patch reshapes the map or the item build.</li>
-        <li><strong>The corpus is young.</strong> A 25-to-40-game effective sample survives shrinkage, which already filters pure luck, but these are early reads. The tables re-run automatically as the clean corpus grows, and the sample column will tell you when an edge has hardened.</li>
+        <li><strong>Floors filter luck, not meta shifts.</strong> Every row clears 120 effective recency-weighted games through a shrinkage that collapses thin pairs to zero, so these are hardened reads, not early ones. But an edge measured on the last few patches can still fade when the next patch reshapes the champions involved. The tables keep re-running as the corpus grows.</li>
         <li><strong>Draft is one factor.</strong> A synergy worth a few percent is real and worth taking, but a thirty-minute game still decides most of the outcome. We'd rather show you a true small edge than a fake large one.</li>
       </ul>
 
