@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why win rate lies about items | Scrypick</title>
+<meta name="description" content="An item's raw win rate mostly measures the situation it gets bought in, not the item itself. Why defensive items look weak and snowball items look strong, and the debiased measure, Win Probability Added, that we are building to fix it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%230e1420%27/%3E%3Ccircle cx=%2716%27 cy=%2715%27 r=%278.5%27 fill=%27none%27 stroke=%27%23c8a24b%27 stroke-width=%272.2%27/%3E%3Ccircle cx=%2716%27 cy=%2715%27 r=%273.2%27 fill=%27%23c8a24b%27/%3E%3Cpath d=%27M9 26h14%27 stroke=%27%23c8a24b%27 stroke-width=%272.2%27 stroke-linecap=%27round%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../index.html" style="text-decoration:none">Scry<b>pick</b></a>
+    <nav class="nav-links">
+      <a href="../scout.html">Champion Scout</a>
+      <a href="index.html">Blog</a>
+      <a href="../index.html#measure">How we measure</a>
+      <a href="../index.html#api">Riot API use</a>
+      <a href="../privacy.html">Privacy</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <article class="doc post">
+    <div class="wrap">
+      <span class="eyebrow">Method: item value</span>
+      <h1>Why win rate lies about items</h1>
+      <p class="updated">Updated 15 July 2026. A methods note, no tables, on the item stat we refuse to publish and the one we are building instead.</p>
+
+      <p class="lede">Open almost any stats site and there is a win rate printed next to every item. It looks like the answer to the only question that matters, which item wins more games. It is not. An item's raw win rate is mostly a readout of the <em>situation</em> it gets bought in, not the item itself. Rank items by it and you will confidently praise the wrong ones.</p>
+
+      <div class="callout">
+        <p>Our <a href="solved-builds-and-live-debates.html">last post</a> drew this exact line and stopped at it. We mapped which builds the ladder has solved, measured strictly as popularity, and refused to rank them by win rate, because a raw item win rate is dominated by <em>when</em> the item is bought. This post is the why, and a first look at the honest replacement we are building.</p>
+      </div>
+
+      <h2>The situation, not the item</h2>
+      <p>Think about when a player actually finishes Zhonya's Hourglass. Usually because an assassin is deleting them, the enemy mid is fed, or the game has turned into a defensive scramble they are trying to survive. The item is a response to danger. So the games where Zhonya's shows up are, on average, games that were already going badly at the moment of purchase. Its win rate inherits those losing positions. The stopwatch did not lose the game, the situation that demanded a stopwatch did, but a raw win rate cannot tell those two apart.</p>
+      <p>The same bias runs the other way for snowball and lethality items. You buy them when you are ahead and want to close, or into a matchup that already favors you. Their win rate borrows the winning position they were bought into and shines. So a ranking by raw win rate is close to a ranking of "which items tend to get bought when you are already winning," which is almost the opposite of what you wanted to know. Call it purchase-situation bias: the number measures the game state, not the item.</p>
+      <p>It gets subtler, and worth admitting: the bias has more than one flavor. The completed-item win rates you see quoted are usually taken from end-of-game inventories, so they also carry a survivorship problem, you only finish an item if the game lasted long enough to buy it, and long games are a different sample than short ones. Purchase-situation bias pulls defensive items down at the moment of purchase; survivorship can pull the same items back up in the final tally. Two distortions, sometimes opposite, both baked into one innocent-looking percentage. That is the whole trouble with raw win rate: you cannot see which way it is lying.</p>
+
+      <h2>The honest fix, Win Probability Added</h2>
+      <p>The fix is not to throw win rate away, it is to control for the thing that contaminates it. The tool is a stat baseball and football settled on decades ago, Win Probability Added. You start with a model that estimates your chance of winning from the state of the game: the gold lead, the timer, towers, dragons, kills. Then for each item purchase you ask a much narrower question. How much did your win probability move around this purchase, above and beyond what the game state already predicted it would move anyway? Average that residual across thousands of purchases and you have WPA, the item's contribution to winning with the situation subtracted out.</p>
+      <p>That subtraction is the entire point. Picture two players both finishing Zhonya's at a 4,000 gold deficit at 22 minutes. The model already knows players in that hole usually lose, so it does not blame the item for the hole. It only measures the swing the item adds on top of it. Do this everywhere and the items that quietly earn their gold rise, while the items that were only ever riding winning positions settle back toward the middle. It is the same move as the shrinkage-corrected interaction terms in our <a href="strongest-champion-pairings.html">pairings work</a>: strip out what you can already explain, report what is left.</p>
+
+      <h2>What WPA can and cannot tell you</h2>
+      <p>WPA is a real improvement over raw win rate, and it is still not magic. Being straight about its limits is the point of building it at all.</p>
+      <ul>
+        <li><strong>Debiased, not causal.</strong> WPA controls for the game state we can observe, gold, objectives, time. It cannot control for what we cannot see: that the player who bought the item may be better, read the map, or knew something the frame data never recorded. We remove the bias we can measure and stay honest that some remains. Anyone selling you a flat causal "this item wins you X%" from observational data is overselling.</li>
+        <li><strong>It measures, it does not predict.</strong> WPA is a rear-view mirror. It tells you what an item did across games that already happened. On a fresh patch, a reworked item, or a champion nobody has piloted into the new meta yet, it has nothing to say until the games accumulate. It is a measurement, not an oracle, and we will grey it out rather than guess.</li>
+        <li><strong>The real counterfactual is the gold, not the item.</strong> Finishing an item spends roughly 3,000 gold. The honest question is rarely "this item or nothing," it is "this item versus the best other thing you could have bought with that gold at that moment." One WPA number does not fully answer that, and we would rather flag the gap than quietly paper over it.</li>
+      </ul>
+
+      <h2>Why bother, then</h2>
+      <p>If the measure is this fraught, why build it at all? Because the alternative, the raw win rate sitting on every other site, is worse: confidently wrong instead of carefully uncertain. Our version attaches its uncertainty, so a thin, noisy read looks thin and noisy instead of masquerading as a hard number. It is timing-aware, since Zhonya's as a second item is a different decision from Zhonya's as a fifth. And because it lives in the same tool that already reads your draft, it can eventually answer the question no standalone item site can reach: given the ten champions actually in your game, which items earn their gold here. That last part is the hard, long game. We ship the honest core first.</p>
+
+      <div class="callout">
+        <p><strong>What we are building.</strong> A debiased item-value panel: how much each item moves your win probability, controlled for the game state it was bought in, shown with its uncertainty and its timing, and eventually conditioned on your actual draft. It is in design now. When it ships it will live where the decision is made, in champ select and in the overlay, not on a separate tab you open after the game is over.</p>
+      </div>
+
+      <div class="callout">
+        <p>Want a read on your own game instead of a global stat? The <a href="../scout.html">Champion Scout</a> reads the current pro meta by role, and the <a href="../index.html">Scrypick overlay</a> ranks your live champ-select options by matchup, synergy, and your own mastery, with a calibrated win chance on each pick.</p>
+      </div>
+
+      <p><a class="back" href="index.html">&larr; Back to the blog</a></p>
+    </div>
+  </article>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p class="legal">
+      Scrypick isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games
+      or anyone officially involved in producing or managing Riot Games properties. Riot Games and all
+      associated properties are trademarks or registered trademarks of Riot Games, Inc.
+    </p>
+    <div class="footlinks">
+      <a href="../index.html">Home</a>
+      <a href="../scout.html">Champion Scout</a>
+      <a href="../privacy.html">Privacy policy</a>
+      <a href="mailto:contact@scrypick.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
