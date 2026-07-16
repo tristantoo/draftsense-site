@@ -6,14 +6,23 @@
 <title>Scrypick: see the pick before you lock it</title>
 <meta name="description" content="Scrypick ranks every champ-select option for your role by measured matchup, synergy, and your own mastery, with a calibrated win chance, a pre-game briefing, and honest statistics. Read-only, advisory, Riot ToS-safe.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%230e1420%27/%3E%3Ccircle cx=%2716%27 cy=%2715%27 r=%278.5%27 fill=%27none%27 stroke=%27%23c8a24b%27 stroke-width=%272.2%27/%3E%3Ccircle cx=%2716%27 cy=%2715%27 r=%273.2%27 fill=%27%23c8a24b%27/%3E%3Cpath d=%27M9 26h14%27 stroke=%27%23c8a24b%27 stroke-width=%272.2%27 stroke-linecap=%27round%27/%3E%3C/svg%3E">
+<meta name="theme-color" content="#0e1420">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://scrypick.com/">
+<meta property="og:title" content="Scrypick: see the pick before you lock it">
+<meta property="og:description" content="Scrypick ranks every champ-select option for your role by measured matchup, synergy, and your own mastery, with a calibrated win chance. Read-only, advisory, Riot ToS-safe.">
+<meta property="og:image" content="https://scrypick.com/overlay.png">
+<meta name="twitter:card" content="summary">
+<link rel="preload" href="fonts/fraunces-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="index.html" style="text-decoration:none">Scry<b>pick</b></a>
-    <nav class="nav-links">
+    <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 32 32" width="22" height="22" aria-hidden="true"><circle cx="16" cy="15" r="8.5" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="16" cy="15" r="3.2" fill="currentColor"/><path d="M9 26h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>Scry<b>pick</b></a>
+    <nav class="nav-links" aria-label="Primary">
       <a href="scout.html">Champion Scout</a>
       <a href="blog/index.html">Blog</a>
       <a href="#measure">How we measure</a>
@@ -23,7 +32,7 @@
   </div>
 </header>
 
-<main>
+<main id="main">
   <section class="hero">
     <div class="wrap">
       <div>
@@ -38,7 +47,7 @@
       <div class="example" aria-label="Example live recommendation">
         <div class="cap">Example output, you are BOTTOM (blue side)</div>
         <div class="rec">
-          <div class="row"><span class="name">Kai'Sa <span class="tag best">best pick</span></span><span class="why">synergy with your Lulu, scales with the comp</span><span class="wp">52.6%</span></div>
+          <div class="row"><span class="name">Kai’Sa <span class="tag best">best pick</span></span><span class="why">synergy with your Lulu, scales with the comp</span><span class="wp">52.6%</span></div>
           <div class="row"><span class="name">Kalista <span class="tag risk">risk</span></span><span class="why">enemy Draven punishes this lane (130 games)</span><span class="wp">51.9%</span></div>
           <div class="row"><span class="name">Xayah <span class="tag tie">tie</span></span><span class="why">safe blind, your 240k mastery</span><span class="wp">51.1%</span></div>
         </div>
@@ -63,14 +72,26 @@
         <ul>
           <li><b>A calibrated win chance</b><span>55% means about 55%. When the top options are statistical ties, it says so instead of inventing a winner.</span></li>
           <li><b>Measured matchups and synergy</b><span>Counter and pairing edges measured from a ranked-game corpus with sample sizes attached, not a hand-maintained table.</span></li>
-          <li><b>Your mastery, not the average player's</b><span>Ranks champions you actually perform on, from each player's champion-mastery record and the lobby's ranks.</span></li>
+          <li><b>Your mastery, not the average player’s</b><span>Ranks champions you actually perform on, from each player’s champion-mastery record and the lobby’s ranks.</span></li>
           <li><b>A game plan before minions spawn<span class="new">new</span></b><span>Which lane to play through, which to cover, and how the enemy comp shapes fights. Every line traces to a measured table.</span></li>
           <li><b>Comfort-risk scouting<span class="new">new</span></b><span>A risk flag when a locked enemy holds a measured counter to your pick, with the sample size that backs it.</span></li>
         </ul>
-        <figure>
-          <img src="overlay.png" width="488" height="880"
-               alt="Scrypick overlay during champ select: ally and enemy rows with champion portraits, a damage-profile comparison, the recommended pick with its calibrated win chance and a matchup, synergy, base, and comp-fit value breakdown, plus ranked alternates." />
-          <figcaption>The overlay in a live champ select. Read-only, advisory, nothing is clicked for you.</figcaption>
+        <figure class="shot">
+          <div class="shot-frame">
+            <img src="overlay.png" width="488" height="880" loading="lazy" decoding="async"
+                 alt="Scrypick overlay during champ select: ally and enemy rows with champion portraits, a damage-profile comparison, the recommended pick with its calibrated win chance and a matchup, synergy, base, and comp-fit value breakdown, plus ranked alternates." />
+            <span class="pin" style="top:63.5%;left:90%">1</span>
+            <span class="pin" style="top:67%;left:14%">2</span>
+            <span class="pin" style="top:50.5%;left:59%">3</span>
+          </div>
+          <figcaption>
+            <ol class="shot-legend">
+              <li><span class="n">1</span> Calibrated win chance, with its &plusmn; spread</li>
+              <li><span class="n">2</span> The value breakdown behind the pick</li>
+              <li><span class="n">3</span> The enemy-comp read that shapes it</li>
+            </ol>
+            The overlay in a live champ select. Read-only, advisory, nothing is clicked for you.
+          </figcaption>
         </figure>
       </div>
     </div>
@@ -80,7 +101,7 @@
     <div class="wrap">
       <div>
         <h2>A briefing, not a vibe.</h2>
-        <p>Other tools generate a "game plan" with a language model and hope it sounds right. Scrypick composes yours from the tables it already measures, so every sentence can be audited against the data that produced it.</p>
+        <p>Other tools generate a “game plan” with a language model and hope it sounds right. Scrypick composes yours from the tables it already measures, so every sentence can be audited against the data that produced it.</p>
       </div>
       <div class="brief" aria-label="Example game-plan briefing">
         <div class="brief-cap">Example briefing</div>
@@ -97,9 +118,13 @@
       <span class="eyebrow">The honest part</span>
       <h2>How we measure</h2>
       <p class="intro">Draft-prediction numbers are easy to inflate. Ours look lower on purpose, and this is the reason to trust them.</p>
+      <div class="stat-lead">
+        <span class="big">0.54</span>
+        <span class="cap"><b>Our honest forward ROC.</b> Measured on the next patch, not a random split that peeks at the live meta. A bigger advertised number usually means an easier test &mdash; not better advice.</span>
+      </div>
       <ul class="principles">
         <li><b>Tested forward, not in-sample</b><span>We train on past patches and score the next one. Our honest forward score is about <span class="num">0.54 ROC</span>; the same model reads higher on a random split that lets it peek at the live meta. We report the forward number.</span></li>
-        <li><b>No champion win-rate features</b><span>Feeding a model recent champion win rates flatters the score but mostly re-reads the meta, and leaks when the window overlaps the test games. We tested it: it leaks or adds nothing. We use champion identity, your mastery, and the lobby's ranks instead.</span></li>
+        <li><b>No champion win-rate features</b><span>Feeding a model recent champion win rates flatters the score but mostly re-reads the meta, and leaks when the window overlaps the test games. We tested it: it leaks or adds nothing. We use champion identity, your mastery, and the lobby’s ranks instead.</span></li>
         <li><b>Draft win chance is low-resolution</b><span>A ten-champion draft does not decide a thirty-minute game, so forward win probability is near-coinflip for everyone. We say so, flag statistical ties, and lead with the sharper signals: matchup, synergy, and your mastery.</span></li>
         <li><b>Calibrated, not flattering</b><span>When we show a win chance it is calibrated: <span class="num">55%</span> means about <span class="num">55%</span>. A bigger advertised number usually comes from an easier target or a looser test, not better advice.</span></li>
       </ul>
@@ -111,8 +136,8 @@
       <h2>How it works</h2>
       <p class="intro">A thin, read-only overlay on your machine talks to a hosted backend that does the modelling. One production key serves every user; no key ships to your machine.</p>
       <ol class="steps">
-        <li><b>Read.</b> <span>The overlay reads champ-select state from the League client's local API (LCU), read-only. No automation, no input simulation.</span></li>
-        <li><b>Look up.</b> <span>The backend resolves the lobby's players and fetches their ranked tier and champion mastery server-side.</span></li>
+        <li><b>Read.</b> <span>The overlay reads champ-select state from the League client’s local API (LCU), read-only. No automation, no input simulation.</span></li>
+        <li><b>Look up.</b> <span>The backend resolves the lobby’s players and fetches their ranked tier and champion mastery server-side.</span></li>
         <li><b>Score.</b> <span>The model evaluates each candidate for your open slot, conditioned on the board, ranks, and mastery.</span></li>
         <li><b>Show.</b> <span>Top picks with a calibrated win chance, risk flags, and a short reason. You make every decision.</span></li>
       </ol>
@@ -122,7 +147,7 @@
   <section id="tools">
     <div class="wrap">
       <h2>Free tools &amp; writing</h2>
-      <p class="intro">No install, no account. Two ways to see the model's read before you ever download the overlay.</p>
+      <p class="intro">No install, no account. Two ways to see the model’s read before you ever download the overlay.</p>
       <div class="tools">
         <a class="tool scout" href="scout.html">
           <h3>Champion Scout</h3>
@@ -181,7 +206,7 @@
 <footer class="site">
   <div class="wrap">
     <p class="legal">
-      Scrypick isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games
+      Scrypick isn’t endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games
       or anyone officially involved in producing or managing Riot Games properties. Riot Games and all
       associated properties are trademarks or registered trademarks of Riot Games, Inc.
     </p>
